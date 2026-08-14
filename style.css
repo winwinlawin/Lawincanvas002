@@ -1,0 +1,173 @@
+/* =========================================================
+   LAWIN CANVAS — DESIGN TOKENS
+   ========================================================= */
+:root {
+  --lc-green-deep: #12201a;
+  --lc-gold: #c9a24a;
+  --lc-gold-light: #e8cd8a;
+  --lc-ivory: #f5efe1;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  background: transparent;
+  color: var(--lc-ivory);
+}
+
+/* ===================== CAMERA / AR LAYERS ===================== */
+/* These fullscreen rules are intentionally restored from the previously
+   working LC001 build. Without them, the browser can show the A-Frame
+   background instead of MindAR's camera video on some phones. */
+video#mindar-video {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  z-index: 0 !important;
+  background: transparent !important;
+}
+
+.a-canvas {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1 !important;
+  background: transparent !important;
+}
+
+a-scene { background: transparent !important; }
+
+a-assets video { display: none !important; }
+
+/* ===================== WELCOME SCREEN ===================== */
+#welcome-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: radial-gradient(ellipse at 50% 30%, #1c3524 0%, var(--lc-green-deep) 65%);
+  padding: 9vh 8vw 4vh;
+  text-align: center;
+  overflow: hidden;
+}
+
+.welcome-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 480px;
+  margin: auto 0;
+}
+
+.logo-glow {
+  position: absolute;
+  top: -6%;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 162, 74, 0.35) 0%, rgba(201, 162, 74, 0) 70%);
+  filter: blur(6px);
+  animation: glow-breathe 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes glow-breathe { 0%,100% { transform: scale(.94); opacity:.75; } 50% { transform: scale(1.05); opacity:1; } }
+
+.logo {
+  position: relative;
+  width: 74vw;
+  max-width: 330px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1.6rem;
+  animation: logo-rise 1.4s cubic-bezier(.22,1,.36,1) both;
+}
+
+@keyframes logo-rise { from { opacity:0; transform:translateY(14px) scale(.97); } to { opacity:1; transform:translateY(0) scale(1); } }
+@keyframes fade-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+.welcome-copy {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.28rem;
+  line-height: 1.55;
+  color: var(--lc-ivory);
+  max-width: 360px;
+  margin: 0 0 2.6rem;
+  animation: fade-in 1.4s ease .3s both;
+}
+
+.begin-button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 1.02rem;
+  letter-spacing: .04em;
+  color: #1b1607;
+  background: linear-gradient(135deg, var(--lc-gold-light), var(--lc-gold));
+  border: none;
+  border-radius: 999px;
+  padding: 1.05rem 2.8rem;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(201,162,74,.28);
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+  animation: fade-in 1.4s ease .55s both;
+  -webkit-tap-highlight-color: transparent;
+}
+.begin-button:active { transform:scale(.97); box-shadow:0 5px 14px rgba(201,162,74,.22); }
+.begin-button:disabled { cursor:wait; opacity:.65; }
+
+.footer-tagline {
+  position: relative;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: .72rem;
+  letter-spacing: .16em;
+  color: rgba(245,239,225,.45);
+  margin: 0;
+  animation: fade-in 1.4s ease .8s both;
+}
+
+/* Gold dust */
+.dust-field { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.dust-field span {
+  position:absolute; bottom:-10px; width:4px; height:4px; border-radius:50%;
+  background:var(--lc-gold-light); opacity:0;
+  box-shadow:0 0 6px 1px rgba(232,205,138,.6);
+  animation:dust-rise 9s linear infinite;
+}
+.dust-field span:nth-child(1){left:8%;animation-delay:0s}.dust-field span:nth-child(2){left:18%;animation-delay:1.2s}.dust-field span:nth-child(3){left:28%;animation-delay:2.4s}.dust-field span:nth-child(4){left:40%;animation-delay:.6s}.dust-field span:nth-child(5){left:52%;animation-delay:3.6s}.dust-field span:nth-child(6){left:63%;animation-delay:1.8s}.dust-field span:nth-child(7){left:73%;animation-delay:4.2s}.dust-field span:nth-child(8){left:82%;animation-delay:2.7s}.dust-field span:nth-child(9){left:91%;animation-delay:5.1s}.dust-field span:nth-child(10){left:48%;animation-delay:6s}
+@keyframes dust-rise { 0%{transform:translateY(0) scale(.6);opacity:0} 10%{opacity:.8} 90%{opacity:.3} 100%{transform:translateY(-92vh) scale(1);opacity:0} }
+
+/* ===================== SCAN MESSAGE ===================== */
+#scan-message {
+  position:fixed; left:50%; bottom:max(28px,env(safe-area-inset-bottom)); z-index:25;
+  display:flex; align-items:center; gap:9px; width:max-content; max-width:calc(100vw - 40px);
+  padding:11px 17px; border:1px solid rgba(232,205,138,.22); border-radius:999px;
+  background:rgba(18,32,26,.78); box-shadow:0 8px 24px rgba(0,0,0,.22);
+  color:var(--lc-ivory); font-family:'Poppins',sans-serif; font-size:.82rem;
+  line-height:1.2; text-align:center; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  opacity:0; transform:translate(-50%,12px); pointer-events:none;
+  transition:opacity .25s ease,transform .25s ease;
+}
+#scan-message.is-visible { opacity:1; transform:translate(-50%,0); }
+.scan-dot { width:8px;height:8px;flex:0 0 8px;border-radius:50%;background:var(--lc-gold-light);box-shadow:0 0 9px rgba(232,205,138,.7);animation:scan-pulse 1.5s ease-in-out infinite; }
+@keyframes scan-pulse { 0%,100%{transform:scale(.8);opacity:.55} 50%{transform:scale(1.15);opacity:1} }
+
+@media (max-width:380px) { .welcome-copy{font-size:1.12rem}.logo{width:68vw}.begin-button{padding:.95rem 2.15rem;font-size:.94rem} }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important; } }
