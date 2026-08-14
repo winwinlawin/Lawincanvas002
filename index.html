@@ -40,14 +40,11 @@
     Point your camera at the painting
   </div>
 
-  <!-- IMPORTANT: keep MindAR auto-start enabled. This matches the previously
-       working LC001 camera pipeline. The welcome screen is only an overlay;
-       tapping BEGIN reveals the already-initialized camera/AR scene. -->
   <a-scene
     id="ar-scene"
     embedded
     mindar-image="
-      imageTargetSrc: assets/targets/targets.mind;
+      imageTargetSrc: assets/targets/LC002.mind;
       uiError: no;
       uiLoading: no;
       uiScanning: no;
@@ -59,8 +56,8 @@
   >
     <a-assets>
       <video
-        id="video-LC001"
-        src="assets/videos/LC001.mp4"
+        id="video-LC002"
+        src="assets/videos/LC002.mp4"
         preload="auto"
         playsinline
         webkit-playsinline
@@ -74,7 +71,7 @@
     <a-entity id="target-0" mindar-image-target="targetIndex: 0">
       <a-video
         id="videoPlane"
-        src="#video-LC001"
+        src="#video-LC002"
         width="1"
         height="0.6667"
         position="0 0 0"
