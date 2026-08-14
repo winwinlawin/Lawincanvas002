@@ -1,15 +1,13 @@
 /**
- * Lawin Canvas — Foundation (LC001)
+ * Lawin Canvas — LC002
  *
- * The AR camera/MindAR pipeline intentionally uses the same auto-start
- * behavior as the previously working LC001 build. The branded welcome
- * screen is only an overlay; BEGIN reveals the initialized AR scene.
+ * Same working AR camera/MindAR pipeline as LC001.
  */
 
 const LOST_GRACE_MS = 6000;
 
 const PAINTINGS = [
-  { id: "LC001", targetIndex: 0, videoElId: "video-LC001" },
+  { id: "LC002", targetIndex: 0, videoElId: "video-LC002" },
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -30,10 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     scanMessage.classList.toggle("is-visible", visible);
   };
 
-  // IMPORTANT: do not call mindarSystem.start() here. MindAR auto-starts
-  // exactly as in the previously working LC001 build. Calling start() a
-  // second time after the scene has initialized is what can leave the user
-  // with a dark/empty AR layer on some mobile browsers.
   const revealAR = () => {
     startBtn.disabled = true;
     welcomeScreen.style.display = "none";
@@ -45,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.warn("[LawinCanvas] Eagle sound playback failed:", err);
     });
 
-    const video = document.querySelector("#video-LC001");
+    const video = document.querySelector("#video-LC002");
     if (video) {
       try {
         video.load();
