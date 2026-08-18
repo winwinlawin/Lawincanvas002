@@ -39,8 +39,8 @@
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
     <a-entity id="target-0" mindar-image-target="targetIndex: 0">
-      <!-- LC002 target is 1024x1536 (2:3). Plane is exactly 1:1.5 so it fills the target. -->
-      <a-video id="videoPlane" src="#video-LC002" width="1" height="1.5" position="0 0 0" material="shader: flat;"></a-video>
+      <!-- Width/height are set automatically from the actual MP4 dimensions by app.js. -->
+      <a-video id="videoPlane" src="#video-LC002" width="1" height="1" position="0 0 0" material="shader: flat;"></a-video>
     </a-entity>
   </a-scene>
 
