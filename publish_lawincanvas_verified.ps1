@@ -27,7 +27,7 @@ $root = (Resolve-Path -LiteralPath $ProductionRoot).Path
 # PowerShell -match is case-insensitive, so only the LC number is significant.
 $folders = @(Get-ChildItem -LiteralPath $root -Directory |
     Where-Object { $_.Name -match '^LC\d{3}(?:\s+.*)?$' } |
-    Sort-Object { [int]($_.Name -match '^LC(\d{3})' | Out-Null; $Matches[1]) })
+    Sort-Object Name)
 
 if (!$folders) { throw "No LC### folders found directly under $root" }
 
